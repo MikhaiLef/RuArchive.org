@@ -44,12 +44,22 @@ const repo3 = new Repository(
     "XP_icons.zip"
 );
 
+// Репозиторий 4
+const repo4 = new Repository(
+    "rep4.html",
+    "applications and tools for Windows phone",
+    "by Mikhail",
+    "applications_and_tools_for_Windows_phone.zip",
+    "applications_and..."
+);
+
+
 
 
 // ============================================
 // МАССИВ ВСЕХ РЕПОЗИТОРИЕВ
 // ============================================
-const repositories = [repo1, repo2, repo3];
+const repositories = [repo1, repo2, repo3, repo4];
 
 // ============================================
 // DOM ЭЛЕМЕНТЫ
