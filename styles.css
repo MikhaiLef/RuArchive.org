@@ -1,0 +1,203 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BASE */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f5f2ea;
+    color: #1a1a1a;
+    line-height: 1.5;
+    padding: 30px 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* HEADER */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 3px solid #666;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #000;
+    letter-spacing: -1px;
+}
+
+.logo a:hover {
+    text-decoration: underline;
+}
+
+.archive-note {
+    font-size: 1rem;
+    color: #444;
+    font-style: italic;
+}
+
+/* SEARCH PANEL */
+.search-panel {
+    border: 2px solid #6f6f6f;
+    background-color: #fffcf2;
+    padding: 30px;
+    margin-bottom: 50px;
+}
+
+.search-line {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#searchBox {
+    flex: 1;
+    min-width: 280px;
+    padding: 14px 18px;
+    font-family: inherit;
+    font-size: 1.1rem;
+    background-color: #fff;
+    border: 2px solid #555;
+    border-radius: 0;
+}
+
+#searchBox:focus {
+    outline: 3px solid #7c7c7c;
+    border-color: #000;
+}
+
+.search-btn {
+    padding: 14px 32px;
+    background-color: #dad3c4;
+    border: 2px solid #444;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0;
+    transition: 0.1s;
+}
+
+.search-btn:hover {
+    background-color: #beb5a2;
+    border-color: #000;
+}
+
+/* SECTION TITLE */
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 40px 0 30px;
+    border-left: 8px solid #5a5a5a;
+    padding-left: 22px;
+}
+
+/* REPOSITORY GRID */
+.repo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 35px;
+}
+
+/* REPOSITORY CARD */
+.repo-card {
+    border: 2px solid #505050;
+    background-color: #ffffff;
+    padding: 28px 25px;
+    transition: all 0.15s;
+    box-shadow: 6px 6px 0 #bfb9ae;
+}
+
+.repo-card:hover {
+    border-color: #222;
+    box-shadow: 10px 10px 0 #a09b90;
+}
+
+.repo-name {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    border-bottom: 2px dotted #aaa;
+    padding-bottom: 8px;
+}
+
+.repo-name a {
+    text-decoration: none;
+    color: #1f1f1f;
+}
+
+.repo-name a:hover {
+    text-decoration: underline;
+}
+
+.repo-description {
+    font-size: 1.05rem;
+    color: #333;
+    margin: 20px 0 25px;
+    min-height: 70px;
+}
+
+/* MATERIAL BLOCK */
+.material-block {
+    background-color: #ebe6db;
+    border-left: 6px solid #6d6d6d;
+    padding: 18px 20px;
+    margin-top: 15px;
+}
+
+.material-link {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.material-link a {
+    color: #1e1e1e;
+    text-decoration: none;
+    border-bottom: 2px solid #777;
+}
+
+.material-link a:hover {
+    border-bottom: 4px solid #333;
+}
+
+.material-path {
+    font-size: 0.85rem;
+    color: #5a5a5a;
+    margin-top: 8px;
+    font-family: monospace;
+}
+
+/* EMPTY STATE */
+.no-repos {
+    border: 3px dashed #6b6b6b;
+    padding: 60px;
+    text-align: center;
+    font-size: 1.6rem;
+    background-color: #e2dcd0;
+    color: #2d2d2d;
+    grid-column: 1 / -1;
+}
+
+/* FOOTER */
+.footer-note {
+    margin-top: 80px;
+    border-top: 3px solid #888;
+    padding: 30px 0 15px;
+    font-size: 1rem;
+    color: #3a3a3a;
+    text-align: right;
+}
