@@ -1,23 +1,23 @@
 // ============================================
-// РЕПОЗИТОРИИ КАК КЛАССЫ
+// Р Р•РџРћР—РРўРћР РР РљРђРљ РљР›РђРЎРЎР«
 // ============================================
 
 class Repository {
     constructor(file, title, description, materialFile, materialLabel) {
-        this.file = file;              // ссылка на HTML файл репозитория
-        this.title = title;            // название репозитория
-        this.description = description; // описание
-        this.material = materialFile;   // файл для скачивания (лежит в корне)
-        this.materialLabel = materialLabel; // текст ссылки
+        this.file = file;              // СЃСЃС‹Р»РєР° РЅР° HTML С„Р°Р№Р» СЂРµРїРѕР·РёС‚РѕСЂРёСЏ
+        this.title = title;            // РЅР°Р·РІР°РЅРёРµ СЂРµРїРѕР·РёС‚РѕСЂРёСЏ
+        this.description = description; // РѕРїРёСЃР°РЅРёРµ
+        this.material = materialFile;   // С„Р°Р№Р» РґР»СЏ СЃРєР°С‡РёРІР°РЅРёСЏ (Р»РµР¶РёС‚ РІ РєРѕСЂРЅРµ)
+        this.materialLabel = materialLabel; // С‚РµРєСЃС‚ СЃСЃС‹Р»РєРё
     }
 }
 
 
 // ============================================
-// СОЗДАНИЕ ЭКЗЕМПЛЯРОВ КЛАССОВ
+// РЎРћР—Р”РђРќРР• Р­РљР—Р•РњРџР›РЇР РћР’ РљР›РђРЎРЎРћР’
 // ============================================
 
-// Репозиторий 1
+// Р РµРїРѕР·РёС‚РѕСЂРёР№ 1
 const repo1 = new Repository(
     "rep1.html",
     "test",
@@ -26,7 +26,7 @@ const repo1 = new Repository(
     "hello :D"
 );
 
-// Репозиторий 2
+// Р РµРїРѕР·РёС‚РѕСЂРёР№ 2
 const repo2 = new Repository(
     "rep2.html",
     "code of the site: CPU Gallery",
@@ -35,25 +35,35 @@ const repo2 = new Repository(
     "Mikhail"
 );
 
+// Р РµРїРѕР·РёС‚РѕСЂРёР№ 3
+const repo3 = new Repository(
+    "rep3.html",
+    "Microsoft Windows XP icons",
+    "by Mikhail",
+    "XP_icons.zip",
+    "XP_icons.zip"
+);
+
+
 
 // ============================================
-// МАССИВ ВСЕХ РЕПОЗИТОРИЕВ
+// РњРђРЎРЎРР’ Р’РЎР•РҐ Р Р•РџРћР—РРўРћР РР•Р’
 // ============================================
-const repositories = [repo1, repo2];
+const repositories = [repo1, repo2, repo3];
 
 // ============================================
-// DOM ЭЛЕМЕНТЫ
+// DOM Р­Р›Р•РњР•РќРўР«
 // ============================================
 const container = document.getElementById('repositoriesContainer');
 const searchInput = document.getElementById('searchBox');
 
 // ============================================
-// ФУНКЦИЯ ОТРИСОВКИ
+// Р¤РЈРќРљР¦РРЇ РћРўР РРЎРћР’РљР
 // ============================================
 function renderRepos(filterText = '') {
     const term = filterText.toLowerCase().trim();
     
-    // Фильтрация
+    // Р¤РёР»СЊС‚СЂР°С†РёСЏ
     let filtered = repositories;
     if (term !== '') {
         filtered = repositories.filter(repo => 
@@ -62,13 +72,13 @@ function renderRepos(filterText = '') {
         );
     }
 
-    // Если ничего не найдено
+    // Р•СЃР»Рё РЅРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ
     if (filtered.length === 0) {
-        container.innerHTML = `<div class="no-repos">? NO REPOSITORIES MATCH «${filterText}»</div>`;
+        container.innerHTML = `<div class="no-repos">? NO REPOSITORIES MATCH В«${filterText}В»</div>`;
         return;
     }
 
-    // Генерация HTML
+    // Р“РµРЅРµСЂР°С†РёСЏ HTML
     let html = '';
     filtered.forEach(repo => {
         html += `
@@ -95,20 +105,20 @@ function renderRepos(filterText = '') {
 }
 
 // ============================================
-// ФУНКЦИЯ ПОИСКА (ГЛОБАЛЬНАЯ)
+// Р¤РЈРќРљР¦РРЇ РџРћРРЎРљРђ (Р“Р›РћР‘РђР›Р¬РќРђРЇ)
 // ============================================
 window.filterRepos = function() {
     renderRepos(searchInput.value);
 };
 
 // ============================================
-// ПОИСК ПРИ ВВОДЕ
+// РџРћРРЎРљ РџР Р Р’Р’РћР”Р•
 // ============================================
 searchInput.addEventListener('input', function() {
     renderRepos(searchInput.value);
 });
 
 // ============================================
-// ПЕРВОНАЧАЛЬНАЯ ЗАГРУЗКА
+// РџР•Р Р’РћРќРђР§РђР›Р¬РќРђРЇ Р—РђР“Р РЈР—РљРђ
 // ============================================
 renderRepos();
