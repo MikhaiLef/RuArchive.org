@@ -53,13 +53,23 @@ const repo4 = new Repository(
     "applications_and..."
 );
 
+// Репозиторий 5
+const repo5 = new Repository(
+    "rep5.html",
+    "MS-DOS 6.22",
+    "by Mikhail",
+    "MS-DOS 6.iso",
+    "MS-DOS 6.iso"
+);
+
+
 
 
 
 // ============================================
 // МАССИВ ВСЕХ РЕПОЗИТОРИЕВ
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4];
+const repositories = [repo1, repo2, repo3, repo4, repo5];
 
 // ============================================
 // DOM ЭЛЕМЕНТЫ
