@@ -62,6 +62,15 @@ const repo5 = new Repository(
     "MS-DOS 6.iso"
 );
 
+// Репозиторий 6
+const repo6 = new Repository(
+    "rep6.html",
+    "Presentation: Family Traditions",
+    "by school",
+    "to_school.pptx",
+    "to_school.pptx"
+);
+
 
 
 
@@ -69,7 +78,7 @@ const repo5 = new Repository(
 // ============================================
 // МАССИВ ВСЕХ РЕПОЗИТОРИЕВ
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6];
 
 // ============================================
 // DOM ЭЛЕМЕНТЫ
