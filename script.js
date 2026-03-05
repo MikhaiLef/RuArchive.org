@@ -71,6 +71,16 @@ const repo6 = new Repository(
     "to_school.pptx"
 );
 
+// Репозиторий 7
+const repo7 = new Repository(
+    "rep7.html",
+    "KolibriOS Lite Version",
+    "by school",
+    "kolibri.iso",
+    "kolibri.iso"
+);
+
+
 
 
 
@@ -78,7 +88,7 @@ const repo6 = new Repository(
 // ============================================
 // МАССИВ ВСЕХ РЕПОЗИТОРИЕВ
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5, repo6];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7];
 
 // ============================================
 // DOM ЭЛЕМЕНТЫ
