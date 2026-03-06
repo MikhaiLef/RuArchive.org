@@ -75,9 +75,18 @@ const repo6 = new Repository(
 const repo7 = new Repository(
     "rep7.html",
     "KolibriOS Lite Version",
-    "by school",
+    "by Mikhail",
     "kolibri.iso",
     "kolibri.iso"
+);
+
+// Репозиторий 8
+const repo8 = new Repository(
+    "rep8.html",
+    "MiCode 2.0!",
+    "by Mikhail and EnterCont",
+    "MiCode_Archive.zip",
+    "MiCode_Archive.zip"
 );
 
 
@@ -88,7 +97,7 @@ const repo7 = new Repository(
 // ============================================
 // МАССИВ ВСЕХ РЕПОЗИТОРИЕВ
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8];
 
 // ============================================
 // DOM ЭЛЕМЕНТЫ
