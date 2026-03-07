@@ -107,7 +107,14 @@ const repo10 = new Repository(
     "MiCode documentation.txt"
 );
 
-
+// Репозиторий 11
+const repo11 = new Repository(
+    "rep11.html",
+    "Super Mega TinyXP",
+    "by Mikhail",
+    "TinyXPv2.zip",
+    "TinyXPv2.zip"
+);
 
 
 
@@ -115,7 +122,7 @@ const repo10 = new Repository(
 // ============================================
 // МАССИВ ВСЕХ РЕПОЗИТОРИЕВ
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11];
 
 // ============================================
 // DOM ЭЛЕМЕНТЫ
