@@ -98,6 +98,15 @@ const repo9 = new Repository(
     "MiCode_2.1_Archive.zip"
 );
 
+// Репозиторий 10
+const repo10 = new Repository(
+    "rep10.html",
+    "MiCode 2 documentation",
+    "by Mikhail and EnterCont",
+    "MiCode documentation.txt",
+    "MiCode documentation.txt"
+);
+
 
 
 
@@ -106,7 +115,7 @@ const repo9 = new Repository(
 // ============================================
 // МАССИВ ВСЕХ РЕПОЗИТОРИЕВ
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10];
 
 // ============================================
 // DOM ЭЛЕМЕНТЫ
