@@ -1,0 +1,101 @@
+MiCode 2.0
+language documentation / version 2.0.0
+
+[input] interpreted language based on Windows batch files. Designed for learning and quick scripting.
+
+
+1. Introduction
+
+The interpreter runs in a command prompt window. Commands are entered line by line with automatic numbering. After entering, the {run} command executes all accumulated code.
+
+- empty lines are ignored (line number does not increase);
+- code is temporarily stored in %temp%\simple_code.tmp;
+- after execution, the temporary file is deleted.
+
+
+2. Main Commands
+
+2.1 Interpreter Control
+
+{run}
+    Execute all entered code.
+    example: {run}
+
+{exit}
+    Exit MiCode.
+    example: {exit}
+
+{ver}  |  /help
+    Show full syntax and help.
+
+
+2.2 Output and Data
+
+print(text)
+    Outputs text to the screen during execution.
+    example: print(Hello, world!)
+
+win{Title}-{Message}
+    Creates a popup dialog box with a title and message.
+    example: win{Error}-{File not found!}
+
+
+2.3 File and System Operations
+
+run.file(path\file.mic)
+    Load code from an external file into the current editor.
+    example: run.file(C:\code\script.mic)
+
+open[setup]  |  setup.exe
+    Launches the program specified in shell.ini ([SHELL] section, start= parameter).
+
+info pc
+    Display brief system information.
+
+all info pc
+    Run external script PC_INF.vbs (detailed system info).
+
+About  |  about  |  open[About]
+    Show MiCode version info and launch About.exe (if present).
+
+
+3. Usage Examples
+
+Example 1. Simple output and window
+    [1] > print(Start)
+    [2] > win{Title}-{Message}
+    [3] > {run}
+
+Example 2. Loading a script
+    [1] > run.file(D:\example.mic)
+    [2] > {run}
+    
+    File example.mic content:
+    print(Loaded from file)
+    win{File}-{Success}
+
+Example 3. shell.ini configuration
+    [SHELL]
+    start=C:\Windows\notepad.exe
+    
+    After this, the setup.exe command will launch Notepad.
+
+
+4. Error Messages
+
+[ERROR] Unknown command: ...   — unknown command.
+[ERROR] File not found: ...    — file not found (run.file or shell.ini).
+No code to execute!            — attempt to execute {run} with no commands entered.
+
+
+5. Limitations (Version 2.0)
+
+- no variables, loops, conditions;
+- case sensitivity matters for some keywords (recommended to enter commands exactly as described);
+- graphical commands only work if the corresponding .exe/.vbs files are present in the interpreter's folder.
+
+
+---
+MiCode 2.0 Documentation
+by Mikhail & EnterCont / freely distributed
+version 2.0.0
