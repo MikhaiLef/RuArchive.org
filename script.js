@@ -116,13 +116,21 @@ const repo11 = new Repository(
     "TinyXPv2.zip"
 );
 
+// Репозиторий 12
+const repo12 = new Repository(
+    "rep12.html",
+    "very cute cat",
+    "name hidden",
+    "Cat.MP4",
+    "Cat.MP4"
+);
 
 
 
 // ============================================
 // МАССИВ ВСЕХ РЕПОЗИТОРИЕВ
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12];
 
 // ============================================
 // DOM ЭЛЕМЕНТЫ
