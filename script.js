@@ -125,12 +125,21 @@ const repo12 = new Repository(
     "Cat.MP4"
 );
 
+// Репозиторий 13
+const repo13 = new Repository(
+    "rep13.html",
+    "Limbo Emulator",
+    "by Archive",
+    "ALL_LIMBO_VERSION.zip",
+    "ALL_LIMBO_VERSION.zip"
+);
+
 
 
 // ============================================
 // МАССИВ ВСЕХ РЕПОЗИТОРИЕВ
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13];
 
 // ============================================
 // DOM ЭЛЕМЕНТЫ
