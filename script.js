@@ -130,14 +130,6 @@ const repo13 = new Repository(
     "ALL_LIMBO_VERSION.zip"
 );
 
-// Ðåïîçèòîðèé 13
-const repo14 = new Repository(
-    "rep14.html",
-    "python 3.10.0",
-    "by Рубан",
-    "python-3.10.0-amd64.exe"
-);
-
 
 // ============================================
 // ÌÀÑÑÈÂ ÂÑÅÕ ÐÅÏÎÇÈÒÎÐÈÅÂ
