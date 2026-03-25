@@ -1,23 +1,19 @@
-// ============================================
-// РЕПОЗИТОРИИ КАК КЛАССЫ
-// ============================================
+
 
 class Repository {
     constructor(file, title, description, materialFile, materialLabel) {
-        this.file = file;              // ссылка на HTML файл репозитория
-        this.title = title;            // название репозитория
-        this.description = description; // описание
-        this.material = materialFile;   // файл для скачивания (лежит в корне)
-        this.materialLabel = materialLabel; // текст ссылки
+        this.file = file;              
+        this.title = title;            
+        this.description = description; 
+        this.material = materialFile;   
+        this.materialLabel = materialLabel; 
     }
 }
 
 
-// ============================================
-// СОЗДАНИЕ ЭКЗЕМПЛЯРОВ КЛАССОВ
-// ============================================
 
-// Репозиторий 1
+
+
 const repo1 = new Repository(
     "rep1.html",
     "test",
@@ -26,7 +22,7 @@ const repo1 = new Repository(
     "hello :D"
 );
 
-// Репозиторий 2
+
 const repo2 = new Repository(
     "rep2.html",
     "code of the site: CPU Gallery",
@@ -35,7 +31,7 @@ const repo2 = new Repository(
     "Mikhail"
 );
 
-// Репозиторий 3
+
 const repo3 = new Repository(
     "rep3.html",
     "Microsoft Windows XP icons",
@@ -44,7 +40,7 @@ const repo3 = new Repository(
     "XP_icons.zip"
 );
 
-// Репозиторий 4
+// Ðåïîçèòîðèé 4
 const repo4 = new Repository(
     "rep4.html",
     "applications and tools for Windows phone",
@@ -53,7 +49,7 @@ const repo4 = new Repository(
     "applications_and..."
 );
 
-// Репозиторий 5
+// Ðåïîçèòîðèé 5
 const repo5 = new Repository(
     "rep5.html",
     "MS-DOS 6.22",
@@ -62,7 +58,7 @@ const repo5 = new Repository(
     "MS-DOS 6.iso"
 );
 
-// Репозиторий 6
+// Ðåïîçèòîðèé 6
 const repo6 = new Repository(
     "rep6.html",
     "Presentation: Family Traditions",
@@ -71,7 +67,7 @@ const repo6 = new Repository(
     "to_school.pptx"
 );
 
-// Репозиторий 7
+// Ðåïîçèòîðèé 7
 const repo7 = new Repository(
     "rep7.html",
     "KolibriOS Lite Version",
@@ -80,7 +76,7 @@ const repo7 = new Repository(
     "kolibri.iso"
 );
 
-// Репозиторий 8
+// Ðåïîçèòîðèé 8
 const repo8 = new Repository(
     "rep8.html",
     "MiCode 2.0!",
@@ -89,7 +85,7 @@ const repo8 = new Repository(
     "MiCode_Archive.zip"
 );
 
-// Репозиторий 9
+// Ðåïîçèòîðèé 9
 const repo9 = new Repository(
     "rep9.html",
     "MiCode 2.1!",
@@ -98,7 +94,7 @@ const repo9 = new Repository(
     "MiCode_2.1_Archive.zip"
 );
 
-// Репозиторий 10
+// Ðåïîçèòîðèé 10
 const repo10 = new Repository(
     "rep10.html",
     "MiCode 2 documentation",
@@ -107,7 +103,7 @@ const repo10 = new Repository(
     "MiCode documentation.txt"
 );
 
-// Репозиторий 11
+// Ðåïîçèòîðèé 11
 const repo11 = new Repository(
     "rep11.html",
     "Super Mega TinyXP",
@@ -116,7 +112,7 @@ const repo11 = new Repository(
     "TinyXPv2.zip"
 );
 
-// Репозиторий 12
+// Ðåïîçèòîðèé 12
 const repo12 = new Repository(
     "rep12.html",
     "very cute cat",
@@ -125,7 +121,7 @@ const repo12 = new Repository(
     "Cat.MP4"
 );
 
-// Репозиторий 13
+// Ðåïîçèòîðèé 13
 const repo13 = new Repository(
     "rep13.html",
     "Limbo Emulator",
@@ -134,26 +130,33 @@ const repo13 = new Repository(
     "ALL_LIMBO_VERSION.zip"
 );
 
+// Ðåïîçèòîðèé 13
+const repo14 = new Repository(
+    "rep14.html",
+    "python 3.10.0",
+    "by Рубан",
+    "python-3.10.0-amd64.exe"
+);
 
 
 // ============================================
-// МАССИВ ВСЕХ РЕПОЗИТОРИЕВ
+// ÌÀÑÑÈÂ ÂÑÅÕ ÐÅÏÎÇÈÒÎÐÈÅÂ
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13, repo14];
 
 // ============================================
-// DOM ЭЛЕМЕНТЫ
+// DOM ÝËÅÌÅÍÒÛ
 // ============================================
 const container = document.getElementById('repositoriesContainer');
 const searchInput = document.getElementById('searchBox');
 
 // ============================================
-// ФУНКЦИЯ ОТРИСОВКИ
+// ÔÓÍÊÖÈß ÎÒÐÈÑÎÂÊÈ
 // ============================================
 function renderRepos(filterText = '') {
     const term = filterText.toLowerCase().trim();
     
-    // Фильтрация
+    // Ôèëüòðàöèÿ
     let filtered = repositories;
     if (term !== '') {
         filtered = repositories.filter(repo => 
@@ -162,13 +165,13 @@ function renderRepos(filterText = '') {
         );
     }
 
-    // Если ничего не найдено
+    // Åñëè íè÷åãî íå íàéäåíî
     if (filtered.length === 0) {
         container.innerHTML = `<div class="no-repos">? NO REPOSITORIES MATCH «${filterText}»</div>`;
         return;
     }
 
-    // Генерация HTML
+    // Ãåíåðàöèÿ HTML
     let html = '';
     filtered.forEach(repo => {
         html += `
@@ -195,20 +198,20 @@ function renderRepos(filterText = '') {
 }
 
 // ============================================
-// ФУНКЦИЯ ПОИСКА (ГЛОБАЛЬНАЯ)
+// ÔÓÍÊÖÈß ÏÎÈÑÊÀ (ÃËÎÁÀËÜÍÀß)
 // ============================================
 window.filterRepos = function() {
     renderRepos(searchInput.value);
 };
 
 // ============================================
-// ПОИСК ПРИ ВВОДЕ
+// ÏÎÈÑÊ ÏÐÈ ÂÂÎÄÅ
 // ============================================
 searchInput.addEventListener('input', function() {
     renderRepos(searchInput.value);
 });
 
 // ============================================
-// ПЕРВОНАЧАЛЬНАЯ ЗАГРУЗКА
+// ÏÅÐÂÎÍÀ×ÀËÜÍÀß ÇÀÃÐÓÇÊÀ
 // ============================================
 renderRepos();
