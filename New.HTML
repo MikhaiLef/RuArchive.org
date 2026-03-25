@@ -335,7 +335,7 @@
                 <div class="form-row">
                     <label class="form-label">
                         <span class="optional">📎</span> FILE ATTACHMENT
-                        <span class="optional">(up to 50 MB)</span>
+                        <span class="optional">(up to 25 MB)</span>
                     </label>
                     <div class="file-wrapper">
                         <input type="file" id="file" accept="*/*">
@@ -458,8 +458,8 @@
                 return;
             }
 
-            if (file && file.size > 50 * 1024 * 1024) {
-                showMessage('❌ File exceeds 50 MB limit. Please select a smaller file.', 'error');
+            if (file && file.size > 25 * 1024 * 1024) {
+                showMessage('❌ File exceeds 25 MB limit. Please select a smaller file.', 'error');
                 return;
             }
 
