@@ -142,7 +142,7 @@ const repo14 = new Repository(
 // ============================================
 // ÌÀÑÑÈÂ ÂÑÅÕ ÐÅÏÎÇÈÒÎÐÈÅÂ
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13, repo14];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13];
 
 // ============================================
 // DOM ÝËÅÌÅÍÒÛ
