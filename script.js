@@ -130,11 +130,19 @@ const repo13 = new Repository(
     "ALL_LIMBO_VERSION.zip"
 );
 
+// Ðåïîçèòîðèé 14
+const repo14 = new Repository(
+    "rep14.html",
+    "файл брейнротов",
+    "by CrimeTech :D",
+    "shootbrainrot1.rbxl"
+);
+
 
 // ============================================
 // ÌÀÑÑÈÂ ÂÑÅÕ ÐÅÏÎÇÈÒÎÐÈÅÂ
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13, repo14];
 
 // ============================================
 // DOM ÝËÅÌÅÍÒÛ
