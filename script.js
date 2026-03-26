@@ -1,19 +1,19 @@
-
-
+// ============================================
+// CLASS DEFINITION
+// ============================================
 class Repository {
     constructor(file, title, description, materialFile, materialLabel) {
-        this.file = file;              
-        this.title = title;            
-        this.description = description; 
-        this.material = materialFile;   
-        this.materialLabel = materialLabel; 
+        this.file = file;
+        this.title = title;
+        this.description = description;
+        this.material = materialFile;
+        this.materialLabel = materialLabel;
     }
 }
 
-
-
-
-
+// ============================================
+// CREATE ALL REPOSITORIES (14 items)
+// ============================================
 const repo1 = new Repository(
     "rep1.html",
     "test",
@@ -21,7 +21,6 @@ const repo1 = new Repository(
     "hello.zip",
     "hello :D"
 );
-
 
 const repo2 = new Repository(
     "rep2.html",
@@ -31,7 +30,6 @@ const repo2 = new Repository(
     "Mikhail"
 );
 
-
 const repo3 = new Repository(
     "rep3.html",
     "Microsoft Windows XP icons",
@@ -40,7 +38,6 @@ const repo3 = new Repository(
     "XP_icons.zip"
 );
 
-// Ðåïîçèòîðèé 4
 const repo4 = new Repository(
     "rep4.html",
     "applications and tools for Windows phone",
@@ -49,7 +46,6 @@ const repo4 = new Repository(
     "applications_and..."
 );
 
-// Ðåïîçèòîðèé 5
 const repo5 = new Repository(
     "rep5.html",
     "MS-DOS 6.22",
@@ -58,7 +54,6 @@ const repo5 = new Repository(
     "MS-DOS 6.iso"
 );
 
-// Ðåïîçèòîðèé 6
 const repo6 = new Repository(
     "rep6.html",
     "Presentation: Family Traditions",
@@ -67,7 +62,6 @@ const repo6 = new Repository(
     "to_school.pptx"
 );
 
-// Ðåïîçèòîðèé 7
 const repo7 = new Repository(
     "rep7.html",
     "KolibriOS Lite Version",
@@ -76,7 +70,6 @@ const repo7 = new Repository(
     "kolibri.iso"
 );
 
-// Ðåïîçèòîðèé 8
 const repo8 = new Repository(
     "rep8.html",
     "MiCode 2.0!",
@@ -85,7 +78,6 @@ const repo8 = new Repository(
     "MiCode_Archive.zip"
 );
 
-// Ðåïîçèòîðèé 9
 const repo9 = new Repository(
     "rep9.html",
     "MiCode 2.1!",
@@ -94,7 +86,6 @@ const repo9 = new Repository(
     "MiCode_2.1_Archive.zip"
 );
 
-// Ðåïîçèòîðèé 10
 const repo10 = new Repository(
     "rep10.html",
     "MiCode 2 documentation",
@@ -103,7 +94,6 @@ const repo10 = new Repository(
     "MiCode documentation.txt"
 );
 
-// Ðåïîçèòîðèé 11
 const repo11 = new Repository(
     "rep11.html",
     "Super Mega TinyXP",
@@ -112,7 +102,6 @@ const repo11 = new Repository(
     "TinyXPv2.zip"
 );
 
-// Ðåïîçèòîðèé 12
 const repo12 = new Repository(
     "rep12.html",
     "very cute cat",
@@ -121,7 +110,6 @@ const repo12 = new Repository(
     "Cat.MP4"
 );
 
-// Ðåïîçèòîðèé 13
 const repo13 = new Repository(
     "rep13.html",
     "Limbo Emulator",
@@ -130,33 +118,67 @@ const repo13 = new Repository(
     "ALL_LIMBO_VERSION.zip"
 );
 
-// Ðåïîçèòîðèé 14
 const repo14 = new Repository(
     "rep14.html",
     "файл брейнротов",
     "by CrimeTech :D",
+    "shootbrainrot1.rbxl",
     "shootbrainrot1.rbxl"
 );
 
-
 // ============================================
-// ÌÀÑÑÈÂ ÂÑÅÕ ÐÅÏÎÇÈÒÎÐÈÅÂ
+// ALL REPOSITORIES ARRAY
 // ============================================
 const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13, repo14];
 
 // ============================================
-// DOM ÝËÅÌÅÍÒÛ
+// CATEGORY DETECTION BASED ON FILE EXTENSION
+// ============================================
+function getCategoryByMaterial(materialFile) {
+    if (!materialFile) return "soft";
+    const ext = materialFile.split('.').pop().toLowerCase();
+    
+    // Soft: archives, installers, images, executables
+    const softExts = ['zip', 'rar', '7z', 'iso', 'exe', 'msi', 'bin', 'vhd', 'apk', 'deb', 'pkg', 'dmg', 'img', 'tar', 'gz', 'rbxl'];
+    if (softExts.includes(ext)) return "soft";
+    
+    // Video: video files
+    const videoExts = ['mp4', 'avi', 'mov', 'mkv', 'wmv', 'flv', 'webm', 'mpeg', 'mpg', 'm4v'];
+    if (videoExts.includes(ext)) return "video";
+    
+    // Books: documents, presentations, ebooks, text files
+    const bookExts = ['pdf', 'epub', 'mobi', 'cbr', 'cbz', 'docx', 'doc', 'pptx', 'ppt', 'txt', 'rtf', 'odt'];
+    if (bookExts.includes(ext)) return "books";
+    
+    // Jar: java archives and related
+    const jarExts = ['jar', 'jad', 'java', 'class'];
+    if (jarExts.includes(ext)) return "jar";
+    
+    return "soft";
+}
+
+// ============================================
+// ADD CATEGORY PROPERTY TO EACH REPOSITORY
+// ============================================
+repositories.forEach(repo => {
+    repo.category = getCategoryByMaterial(repo.material);
+});
+
+// ============================================
+// DOM ELEMENTS
 // ============================================
 const container = document.getElementById('repositoriesContainer');
 const searchInput = document.getElementById('searchBox');
+let activeCategory = 'all';
+let categorySelected = false;
 
 // ============================================
-// ÔÓÍÊÖÈß ÎÒÐÈÑÎÂÊÈ
+// RENDER FUNCTION with FILTERS (search + category)
 // ============================================
-function renderRepos(filterText = '') {
-    const term = filterText.toLowerCase().trim();
+function renderRepos(searchText = '', category = 'all') {
+    const term = searchText.toLowerCase().trim();
     
-    // Ôèëüòðàöèÿ
+    // Filter by search term
     let filtered = repositories;
     if (term !== '') {
         filtered = repositories.filter(repo => 
@@ -164,27 +186,39 @@ function renderRepos(filterText = '') {
             repo.description.toLowerCase().includes(term)
         );
     }
-
-    // Åñëè íè÷åãî íå íàéäåíî
+    
+    // Filter by category
+    if (category !== 'all') {
+        filtered = filtered.filter(repo => repo.category === category);
+    }
+    
+    // Empty state
     if (filtered.length === 0) {
-        container.innerHTML = `<div class="no-repos">? NO REPOSITORIES MATCH «${filterText}»</div>`;
+        let message = '? NO REPOSITORIES FOUND';
+        if (term && category !== 'all') message = `? NO ${category.toUpperCase()} REPOSITORIES MATCH ${searchText}`;
+        else if (term) message = `? NO REPOSITORIES MATCH ${searchText}`;
+        else if (category !== 'all') message = `? NO REPOSITORIES IN ${category.toUpperCase()} CATEGORY`;
+        
+        container.innerHTML = `<div class="no-repos">${message}</div>`;
         return;
     }
-
-    // Ãåíåðàöèÿ HTML
+    
+    // Generate HTML
     let html = '';
     filtered.forEach(repo => {
+        const categoryDisplay = repo.category.toUpperCase();
         html += `
             <div class="repo-card">
                 <div class="repo-name">
                     <a href="${repo.file}">${repo.title}</a>
+                    <span class="repo-category">${categoryDisplay}</span>
                 </div>
                 <div class="repo-description">
                     ${repo.description}
                 </div>
                 <div class="material-block">
                     <div class="material-link">
-                        ?? <a href="${repo.material}" target="_blank">${repo.materialLabel}</a>
+                        <a href="${repo.material}" target="_blank">${repo.materialLabel}</a>
                     </div>
                     <div class="material-path">
                         location: /${repo.material}
@@ -198,20 +232,79 @@ function renderRepos(filterText = '') {
 }
 
 // ============================================
-// ÔÓÍÊÖÈß ÏÎÈÑÊÀ (ÃËÎÁÀËÜÍÀß)
+// MAIN FILTER FUNCTION (search + category)
 // ============================================
-window.filterRepos = function() {
-    renderRepos(searchInput.value);
+window.applyFiltersAndRender = function() {
+    renderRepos(searchInput.value, activeCategory);
 };
 
 // ============================================
-// ÏÎÈÑÊ ÏÐÈ ÂÂÎÄÅ
+// CATEGORY BUTTON HANDLERS
+// ============================================
+function setupCategoryButtons() {
+    const buttons = document.querySelectorAll('.cat-btn');
+    const allButton = document.querySelector('.all-btn');
+    
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const catValue = this.getAttribute('data-cat');
+            
+            // If clicking on a category button (not All)
+            if (catValue !== 'all') {
+                categorySelected = true;
+                // Show the All button
+                if (allButton) {
+                    allButton.style.display = 'inline-block';
+                }
+                
+                // Remove active class from all buttons
+                buttons.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Set active category
+                activeCategory = catValue;
+                // Re-render with current search and new category
+                renderRepos(searchInput.value, activeCategory);
+            }
+        });
+    });
+    
+    // Handle All button separately
+    if (allButton) {
+        allButton.addEventListener('click', function() {
+            // Remove active class from all buttons
+            buttons.forEach(b => b.classList.remove('active'));
+            // Remove active class from All button
+            this.classList.remove('active');
+            
+            // Reset to show all repositories
+            activeCategory = 'all';
+            categorySelected = false;
+            
+            // Hide the All button again
+            this.style.display = 'none';
+            
+            // Re-render with all repositories
+            renderRepos(searchInput.value, activeCategory);
+        });
+    }
+}
+
+// ============================================
+// SEARCH ON INPUT
 // ============================================
 searchInput.addEventListener('input', function() {
-    renderRepos(searchInput.value);
+    renderRepos(searchInput.value, activeCategory);
 });
 
 // ============================================
-// ÏÅÐÂÎÍÀ×ÀËÜÍÀß ÇÀÃÐÓÇÊÀ
+// INITIAL RENDER & SETUP
 // ============================================
-renderRepos();
+renderRepos('', 'all');
+setupCategoryButtons();
+
+// Make filterRepos available globally for backward compatibility
+window.filterRepos = function() {
+    renderRepos(searchInput.value, activeCategory);
+};
