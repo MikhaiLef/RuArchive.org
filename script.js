@@ -153,6 +153,14 @@ function getCategoryByMaterial(materialFile) {
     // Jar: java archives and related
     const jarExts = ['jar', 'jad', 'java', 'class'];
     if (jarExts.includes(ext)) return "jar";
+
+        // Jar: java archives and related
+    const audExts = ['mp3', 'Ogg'];
+    if (audExts.includes(ext)) return "audio";
+
+            // Jar: java archives and related
+    const imgExts = ['jpg', 'png', 'bmp', 'jpeg'];
+    if (audExts.includes(ext)) return "images";
     
     return "soft";
 }
