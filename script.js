@@ -126,10 +126,18 @@ const repo14 = new Repository(
     "shootbrainrot1.rbxl"
 );
 
+const repo15 = new Repository(
+    "rep15.html",
+    "MiDOS",
+    "by Mikhail",
+    "MiDOS.img",
+    "run.bat"
+);
+
 // ============================================
 // ALL REPOSITORIES ARRAY
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13, repo14];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13, repo14, repo15];
 
 // ============================================
 // CATEGORY DETECTION BASED ON FILE EXTENSION
