@@ -141,10 +141,17 @@ const repo16 = new Repository(
     "MiOS_2.iso"
 );
 
+const repo17 = new Repository(
+    "rep17.html",
+    "MiOS",
+    "by Mikhail",
+    "MiOS 3.0 x32.iso"
+);
+
 // ============================================
 // ALL REPOSITORIES ARRAY
 // ============================================
-const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13, repo14, repo15, repo16];
+const repositories = [repo1, repo2, repo3, repo4, repo5, repo6, repo7, repo8, repo9, repo10, repo11, repo12, repo13, repo14, repo15, repo16, repo17];
 
 // ============================================
 // CATEGORY DETECTION BASED ON FILE EXTENSION
